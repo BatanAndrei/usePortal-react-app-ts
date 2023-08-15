@@ -1,25 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import usePortal from "./usePortal";
 
 function App() {
+    const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <h1 className="App-header">
+           Какой-то контент 
+          </h1>
+          <>
+            <button onClick={openPortal}>Открыть портал</button>
+            {isOpen && (
+              <Portal>
+                <p>
+                  Ого,  да это ваш собственный портал!
+                </p>
+                <button onClick={closePortal}>Закрыть портал </button>
+              </Portal>
+            )}
+          </>
+        </div>
   );
 }
 
